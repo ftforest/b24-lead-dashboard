@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Дашборд руководителя</title>
+
+    <!-- Подключаем официальный SDK Битрикс24 -->
+    <script src="//api.bitrix24.com/api/v1/"></script>
+
+    <!-- Подключаем Chart.js для графиков -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Подключаем наши стили -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="dashboard-container">
+    <header>
+        <h1>Дашборд руководителя</h1>
+        <div class="filters">
+            <!-- Сюда позже добавим фильтр по датам -->
+            <select id="date-filter">
+                <option value="all">За всё время</option>
+                <option value="30" selected>Последние 30 дней</option>
+                <option value="month">Текущий месяц</option>
+            </select>
+        </div>
+    </header>
+
+    <main>
+        <div id="loader" class="loader">Инициализация и загрузка данных...</div>
+
+        <div id="content" style="display: none;">
+            <!-- Карточки с метриками -->
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <span class="metric-title">Общая сумма</span>
+                    <span class="metric-value" id="total-sum">0 ₽</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-title">Количество сделок</span>
+                    <span class="metric-value" id="total-count">0</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-title">Средний чек</span>
+                    <span class="metric-value" id="average-check">0 ₽</span>
+                </div>
+            </div>
+
+            <!-- Контейнер для графика -->
+            <div class="chart-container">
+                <canvas id="dealsChart"></canvas>
+            </div>
+        </div>
+    </main>
+</div>
+
+<!-- Наша логика -->
+<script src="app.js"></script>
+</body>
+</html>
